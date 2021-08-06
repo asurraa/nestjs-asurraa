@@ -8,6 +8,6 @@
 - Support `KH` and `EN` in database
 - Support `json` `key` `value pair` structure
 
-## By @LyhourChhen
+
 
 ## @asurraa

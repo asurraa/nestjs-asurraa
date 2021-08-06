@@ -5,7 +5,6 @@
   "organization": "AsurRaa",
   "author": "Kimseng Duong <kimsengduong@gmail.com>",
   "license": "MIT",
-  "readmeFilename": "README.md",
   "main": "dist/index.js",
   "files": [
     "dist/**/*",
@@ -29,9 +28,11 @@
   },
   "repository": {
     "type": "git",
+    "url": "git+https://github.com/asurraa/nestjs-package-starter.git"
+  },
+  "bugs": {
     "url": "https://github.com/asurraa/nestjs-package-starter"
   },
-  "bugs": "https://github.com/asurraa/nestjs-package-starter",
   "peerDependencies": {
     "@nestjs/common": "^7.6.18"
   },
@@ -72,5 +73,6 @@
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "homepage": "https://github.com/asurraa/nestjs-package-starter#readme"
 }

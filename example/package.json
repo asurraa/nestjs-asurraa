@@ -24,12 +24,16 @@
     "@asurraa/sura-nest-translation": "link:../packages/translation",
     "@nestjs/common": "^7.6.13",
     "@nestjs/core": "^7.6.13",
+    "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^7.6.13",
+    "@nestjs/swagger": "^4.8.2",
     "@nestjs/typeorm": "^7.1.5",
+    "D": "^1.0.0",
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6",
+    "swagger-ui-express": "^4.1.6",
     "typeorm": "^0.2.34"
   },
   "devDependencies": {

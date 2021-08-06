@@ -2,8 +2,9 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TestModule, TestEntity } from '@asurraa/nestjs-library-starter';
-import { TranslationEntity, TranslationModule } from '@asurraa/sura-nest-translation';
+// import { TestModule, TestEntity } from '@asurraa/nestjs-library-starter';
+
+import { TestModule } from './test/test.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -16,8 +17,8 @@ import { TranslationEntity, TranslationModule } from '@asurraa/sura-nest-transla
       autoLoadEntities: true,
       synchronize: true,
     }),
-    TestModule.register(TypeOrmModule.forFeature([TestEntity])),
-    TranslationModule.register(TypeOrmModule.forFeature([TranslationEntity])),
+    // TestModule.register(TypeOrmModule.forFeature([TestEntity])),
+    TestModule,
   ],
   controllers: [AppController],
   providers: [AppService],

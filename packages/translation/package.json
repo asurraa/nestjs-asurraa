@@ -1,6 +1,6 @@
 {
   "name": "@asurraa/sura-nest-translation",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Sura Nest Translation ",
   "organization": "AsurRaa",
   "author": "Kimseng Duong <kimsengduong@gmail.com>",
@@ -37,7 +37,9 @@
     "@nestjs/common": "^7.6.18"
   },
   "dependencies": {
+    "@nestjs/swagger": "^5.0.9",
     "@nestjs/typeorm": "^7.1.5",
+    "swagger-ui-express": "^4.1.6",
     "typeorm": "^0.2.34"
   },
   "devDependencies": {
@@ -50,6 +52,7 @@
     "@types/node": "15.12.5",
     "@types/supertest": "2.0.11",
     "jest": "27.0.6",
+    "lodash": "^4.17.21",
     "prettier": "2.3.2",
     "rimraf": "^3.0.2",
     "supertest": "6.1.3",

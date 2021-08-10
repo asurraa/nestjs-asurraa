@@ -1,19 +1,11 @@
-import _ from 'lodash';
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateTranslationDto } from './dto/create-translation.dto';
-import { TranslationEntity } from './entities/translation.entity';
-// import { bootstrapSecretKey } from '@base-url';
-// import {
-//   translateChineseData,
-//   translateEnglishData,
-//   translateKhmerData,
-// } from 'src/config/default-config-data/translate-data.config';
 import { TRANSLATE_LANG_ENUM } from './enum/translate-lang.enum';
 import { i18nDataSample } from './sample/data.sample';
+import { omit } from './utils/omit-function';
 
-// @Injectable()
 export function TranslationModuleService(Entity): any {
   class TranslationService {
     @InjectRepository(Entity)
@@ -66,11 +58,11 @@ export function TranslationModuleService(Entity): any {
         lang: TRANSLATE_LANG_ENUM.en,
         translate_key: i18nDataSample.en,
       });
-      // await this.translationRepo.save({
-      //   id: 3,
-      //   lang: TRANSLATE_LANG_ENUM.cn,
-      //   translate_key: translateChineseData,
-      // });
+      await this.translationRepo.save({
+        id: 3,
+        lang: TRANSLATE_LANG_ENUM.cn,
+        translate_key: {},
+      });
       return {
         message: 'Init Translate Successfully',
         data: await this.translationRepo.find(),
@@ -167,39 +159,26 @@ export function TranslationModuleService(Entity): any {
     };
 
     // * Services
-    deleteKeyServices = async (param: string) => {
+    async deleteKeyServices(param: string) {
       try {
         const translateKeys = await this.translationRepo.find();
-        const dataKey = translateKeys.map((data) => data.translate_key);
         const key = param['key'];
 
-        const deleteEn = _.omit(dataKey[0], [key]);
-        const deleteKh = _.omit(dataKey[1], [key]);
-        const deleteCn = _.omit(dataKey[2], [key]);
+        translateKeys.map(async (language) => {
+          const newLang = omit(language.translate_key, [key]);
 
-        await this.translationRepo.save({
-          id: 1,
-          lang: TRANSLATE_LANG_ENUM.kh,
-          translate_key: deleteKh,
+          await this.translationRepo.save({
+            id: language.id,
+            lang: language.lang,
+            translate_key: newLang,
+          });
         });
 
-        await this.translationRepo.save({
-          id: 2,
-          lang: TRANSLATE_LANG_ENUM.en,
-          translate_key: deleteEn,
-        });
-
-        await this.translationRepo.save({
-          id: 3,
-          lang: TRANSLATE_LANG_ENUM.cn,
-          translate_key: deleteCn,
-        });
-
-        return this.translationRepo.find();
+        return await this.translationRepo.find();
       } catch (error) {
         throw new Error(error);
       }
-    };
+    }
   }
 
   return TranslationService;
